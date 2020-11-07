@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html 
+    xmlns:th = "http://www.thymeleaf.org">
+    <head>
+        <title>Cadastro de Usuários</title>
+        <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+                </head>
+                <body style="background-color: gray">
+                    <div class="label_cadastro" style="text-align: center">
+                        <h2 style="margin-top: 2.5rem;color: white">Faça seu cadastro no formulário abaixo.</h2>
+                    </div>
+                    <div class="container" style="max-width: 500px">
+                        <div class="jumbotron" align="center" style="margin-top: 50px; background-color:#C0C0C0 ">
+                            <div>
+                                <form action="/salvar_user" method="post">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Name" required="true">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required="true"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"required="true"/>
+                                    </div>
+                                    <div class="btn" align="center">
+                                        <button type="submit" class="btn btn-success" style="border-radius: 3.5rem">Cadastrar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="listagem-usuario">
+                                <div class="container">
+                                    <div id="listaDeClientes">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nome:</th>
+                                                    <th>Email:</th>
+                                                </tr>
+                                            </thead>
+                                            <tr th:each="usuario : ${usuarios}">
+                                                <td><span th:text="${usuario.name}"></span></td>
+                                                <td><span th:text="${usuario.email}"></span></td>
+                                                <td
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a onclick="if(!window.confirm('Tem certeza que deseja apagar?')) return false;" class="btn btn-danger" th:href="@{/deletar_usuario/{id}(id=${usuario.id})}">Deletar</a>
+                                                        <a class="btn btn-info" th:href="@{/edit/{id}(id=${usuario.id})}">Edit</a>
+                                                                            &nbsp;&nbsp;&nbsp;                                        
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </body>
+                </html>

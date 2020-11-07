@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th = "http://www.thymeleaf.org">
+    <head>
+        <title>Tela inicial</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body style="background-color: gray">
+        <nav class="navbar navbar-dark bg-dark"style="height: 4.5rem">
+            <li class="nav-item">
+                <div class="btn-usuario" style="margin-top: -2rem">
+                    <a class="nav-link" href="cadastro_usuarios" style="margin-bottom: -0.5rem;color: white;align-items: center">
+                        <img src="https://img.icons8.com/color/48/000000/add-user-male.png" width="30" height="30" class="d-inline-block align-top" alt="" style="margin-bottom: 0.5rem;margin-left:1.5rem ">
+                        <div style="margin-left: -1.2rem; margin-bottom: 0.5rem">
+                            Cadastrar Usuario
+                        </div>
+                    </a>
+                </div>
+                <div class="btn-tarefas" style="margin-top: -2rem">
+                    <a class="nav-link" href="cadastro_tarefas">
+                        <img src="https://img.icons8.com/color/48/000000/document.png" width="30" height="30" style="margin-left: 10.5rem;margin-top: -6.2rem">
+                        <div style="margin-left: 8rem;margin-top: -2.5rem;color: white">Cadastrar Tarefa</div>
+                    </a>
+                </div>
+            </li>
+        </nav>
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <p th:text="${message}">Mensagem de sucesso</p>
+        </div>
+        <div class="teste-list">
+            <div class="container">
+                <div id="listaDeClientes">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nome da tarefa</th>
+                                <th>Data de inicio:</th>
+                                <th>Data de fim:</th>
+                                <th>Criador da tarefa:</th>
+                                <th>Executor da tarefa:</th>
+                                <th>Deletar:</th>
+                            </tr>
+                        </thead>
+                        <tr th:each="tarefa : ${tarefas}">
+                            <td><span th:text="${tarefa.name}"></span></td>
+                            <td><span th:text="${tarefa.dataini}"></span></td>
+                            <td><span th:text="${tarefa.datafinal}"></span></td>
+                            <td><span th:text="${tarefa.ctarefa}"></span></td>
+                            <td><span th:text="${tarefa.etarefa}"></span></td>
+                            <td><a onclick="if(!window.confirm('Tem certeza que deseja apagar?')) return false;" class="btn btn-danger" th:href="@{/deletar_tarefa/{id}(id=${tarefa.id})}">Deletar</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    </body>
+</html>

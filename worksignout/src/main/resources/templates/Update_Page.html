@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th = "http://www.thymeleaf.org">
+    <head>
+        <title>Pagina de Update</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body  style="background-color: gray">
+        <div>
+            <div th:if="${message}" class="alert alert-success" role="alert">
+                <p th:text="${message}">Mensagem de sucesso</p>
+            </div>
+            <div class="container">
+                <div class="jumbotron" align="center" style="margin-top: 50px; background-color:#C0C0C0 ">
+                    <table border ="0" cellpadding="5">
+                        <tr th:each="usuario : ${usuarios}">
+                            <td>ID: </td>
+                            <td th:text="${usuario.id}">
+                        <form:hidden path="id"/>
+                        </td>
+                        </tr>
+                    </table>
+                    <form action="#" th:action="@{/salvar_atualizacao}" th:object="${usuarios}" method="post">
+                        <div class="form-group">
+                            <input  type="text" class="form-control" th:field="*{name}" placeholder="" required="true">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" th:field="*{email}" placeholder="Email" required="true"/>
+                        </div>
+                        <div class="btn" align="center">
+                            <button type="submit" class="btn btn-success" style="border-radius: 3.5rem">salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </body>
+</html>

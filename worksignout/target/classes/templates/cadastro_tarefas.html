@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th = "http://www.thymeleaf.org">
+    <head>
+        <title>Cadastro de Tarefas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="http://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+    </head>
+    <body style="background-color: gray">
+        <div class="container" style="max-width: 500px">
+            <div class="jumbotron" align="center" style="height: 623px;margin-top: 50px; background-color:#C0C0C0 ">
+                <div>
+                    <form action="salvar_tarefa" method="post"> 
+                        <div class="form-group aw-required" style="text-align: left">Nome da tarefa:
+                            <input type="text" class="form-control" id="name" name="name" required="true">
+                        </div>
+                        <div class="form-group"style="text-align: left">Inicio:
+                            <input type="date" class="form-control" id="dataini" name="dataini" required="true"/>
+                        </div>
+                        <div class="form-group" style="text-align: left">Fim:
+                            <input type="date" class="form-control" id="datafinal" name="datafinal" required="true"/>
+                        </div>
+                        <div class="select-ctarefa">
+                            <div class="container">
+                                <div class="col-lg-3">
+                                    <select  class="form-control" id="ctarefa" name="ctarefa" style="width: 640%;margin-bottom: 1.5rem;margin-top: 1.5rem; margin-left: -10.8rem">
+                                        <option value="">Quem vai cadastrar a tarefa</option>
+                                        <option th:each="usuario: ${users}"
+                                                th:text="${usuario.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="select-etarefa">
+                    <div class="container">
+                        <div class="col-lg-3">
+                            <select  class="form-control" id="etarefa" name="etarefa" style="width: 640%;margin-bottom: 1.5rem;margin-top: 1.5rem; margin-left: -10.8rem">
+                                <option value="">Quem vai executar a tarefa</option>
+                                <option th:each="usuario: ${users}"
+                                        th:text="${usuario.name}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn" align="center">
+                    <button type="submit" class="btn btn-success" style="border-radius: 1.0rem">Cadastrar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+</body>
+</html>
